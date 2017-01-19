@@ -275,7 +275,7 @@ func TestCloudFrontStructure_expandDefaultCacheBehavior(t *testing.T) {
 		t.Fatalf("Expected TrustedSigners.Items to be %v, got %v", trustedSignersConf(), dcb.TrustedSigners.Items)
 	}
 	if *dcb.MaxTTL != 365000000 {
-		t.Fatalf("Expected MaxTTL to be 86400, got %v", *dcb.MaxTTL)
+		t.Fatalf("Expected MaxTTL to be 365000000, got %v", *dcb.MaxTTL)
 	}
 	if *dcb.SmoothStreaming != false {
 		t.Fatalf("Expected SmoothStreaming to be false, got %v", *dcb.SmoothStreaming)
@@ -615,7 +615,7 @@ func TestCloudFrontStructure_expandAllowedMethods(t *testing.T) {
 	data := allowedMethodsConf()
 	am := expandAllowedMethods(data)
 	if *am.Quantity != 7 {
-		t.Fatalf("Expected Quantity to be 3, got %v", *am.Quantity)
+		t.Fatalf("Expected Quantity to be 7, got %v", *am.Quantity)
 	}
 	if reflect.DeepEqual(am.Items, expandStringList(data)) != true {
 		t.Fatalf("Expected Items to be %v, got %v", data, am.Items)
